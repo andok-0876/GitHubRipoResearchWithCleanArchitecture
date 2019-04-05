@@ -13,6 +13,9 @@
 		3B9362B62256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362B42256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld */; };
 		3B9362B82256E37800438E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9362B72256E37800438E99 /* Assets.xcassets */; };
 		3B9362BB2256E37800438E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9362B92256E37800438E99 /* LaunchScreen.storyboard */; };
+		3B9362E0225702E400438E99 /* GitHubRepoStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362DC225702E300438E99 /* GitHubRepoStatusList.swift */; };
+		3B9362E1225702E400438E99 /* GitHubRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362DD225702E400438E99 /* GitHubRepo.swift */; };
+		3B9362E2225702E400438E99 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362DF225702E400438E99 /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		3B9362B72256E37800438E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B9362BA2256E37800438E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B9362BC2256E37800438E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9362DC225702E300438E99 /* GitHubRepoStatusList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRepoStatusList.swift; sourceTree = "<group>"; };
+		3B9362DD225702E400438E99 /* GitHubRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRepo.swift; sourceTree = "<group>"; };
+		3B9362DF225702E400438E99 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		3B9362AC2256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture */ = {
 			isa = PBXGroup;
 			children = (
+				3B9362DB225702C200438E99 /* Entity */,
 				3B9362AD2256E37700438E99 /* AppDelegate.swift */,
 				3B9362AF2256E37700438E99 /* ViewController.swift */,
 				3B9362B12256E37700438E99 /* Main.storyboard */,
@@ -65,6 +72,24 @@
 				3B9362B42256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld */,
 			);
 			path = GitHubRipoResearchWithCleanArchitecture;
+			sourceTree = "<group>";
+		};
+		3B9362DB225702C200438E99 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				3B9362DE225702E400438E99 /* common */,
+				3B9362DD225702E400438E99 /* GitHubRepo.swift */,
+				3B9362DC225702E300438E99 /* GitHubRepoStatusList.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		3B9362DE225702E400438E99 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				3B9362DF225702E400438E99 /* ArrayExtensions.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B9362B62256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld in Sources */,
+				3B9362E2225702E400438E99 /* ArrayExtensions.swift in Sources */,
 				3B9362B02256E37700438E99 /* ViewController.swift in Sources */,
+				3B9362E0225702E400438E99 /* GitHubRepoStatusList.swift in Sources */,
+				3B9362E1225702E400438E99 /* GitHubRepo.swift in Sources */,
 				3B9362AE2256E37700438E99 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
