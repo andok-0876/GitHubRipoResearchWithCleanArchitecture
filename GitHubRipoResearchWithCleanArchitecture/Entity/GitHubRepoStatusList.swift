@@ -34,11 +34,13 @@ struct GitHubRepoStatusList {
             statuses = statuses.filter{ $0.isLiked }
         }
     }
+    
     mutating func append(repos: [GitHubRepo], likes: [GitHubRepo.ID: Bool]) {
         let newStatusesMayNotUnique = statuses + Array(repos: repos, likes: likes)
         statuses = newStatusesMayNotUnique
             .unique { _, _ in .removeOldOne }
     }
+    
     mutating func set(isLiked: Bool, for id: GitHubRepo.ID) throws {
         guard let index = statuses.firstIndex(where: { $0.repo.id == id }) else {
             return//throw Error.notFoundRepo(ofID: id)

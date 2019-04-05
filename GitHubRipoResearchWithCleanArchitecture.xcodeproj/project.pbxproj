@@ -77,9 +77,9 @@
 		3B9362DB225702C200438E99 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				3B9362DE225702E400438E99 /* common */,
 				3B9362DD225702E400438E99 /* GitHubRepo.swift */,
 				3B9362DC225702E300438E99 /* GitHubRepoStatusList.swift */,
+				3B9362DE225702E400438E99 /* common */,
 			);
 			path = Entity;
 			sourceTree = "<group>";

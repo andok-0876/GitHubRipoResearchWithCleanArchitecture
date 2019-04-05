@@ -5,6 +5,8 @@ public enum UniqueStrategy {
     case replaceByNewOne
     case removeOldOne
 }
+
+//extension
 public extension Array where Element: Equatable {
     func unique(resolve: (Element, Element) -> UniqueStrategy) -> [Element] {
         return reduce(into: []) { (result, newOne) in
