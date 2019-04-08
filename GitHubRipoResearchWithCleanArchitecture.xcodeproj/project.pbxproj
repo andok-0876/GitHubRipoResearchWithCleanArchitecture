@@ -49,6 +49,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B211003225AE53900BB3513 /* InterfaceAdapter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InterfaceAdapter;
+			sourceTree = "<group>";
+		};
 		3B9362A12256E37700438E99 = {
 			isa = PBXGroup;
 			children = (
@@ -68,8 +75,9 @@
 		3B9362AC2256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture */ = {
 			isa = PBXGroup;
 			children = (
-				3B9362EA2257348600438E99 /* Usecases */,
 				3B9362DB225702C200438E99 /* Entity */,
+				3B9362EA2257348600438E99 /* Usecases */,
+				3B211003225AE53900BB3513 /* InterfaceAdapter */,
 				3B9362AD2256E37700438E99 /* AppDelegate.swift */,
 				3B9362AF2256E37700438E99 /* ViewController.swift */,
 				3B9362B12256E37700438E99 /* Main.storyboard */,

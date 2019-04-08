@@ -1,6 +1,6 @@
 import Foundation
 
-//Repository datas and favorite data
+//Repository datas and likes data
 struct GitHubRepoStatus: Equatable {
     let repo: GitHubRepo
     let isLiked: Bool

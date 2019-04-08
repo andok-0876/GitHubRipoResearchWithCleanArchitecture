@@ -1,52 +1,52 @@
 import Foundation
 
-// Use Caseが外側(Interface Adapters)に公開するインターフェイス
+// Input from Interface Adapters
 protocol ReposLikesUseCaseProtocol: AnyObject {
-    // キーワードを使ったサーチ
+    // search with keywords
     func startFetch(using keywords: [String])
-    // お気に入り済みリポジトリ一覧の取得
+    // collect the list of likes Repo
     func collectLikedRepos()
-    // お気に入りの追加・削除
+    //  add or delete the likes
     func set(liked: Bool, for repo: GitHubRepo.ID)
 
-    // 外側のオブジェクトはプロパティとしてあとからセットする
+    //set outlayer object as property 
     var output: ReposLikesUseCaseOutput! { get set }
     var reposGateway: ReposGatewayProtocol! { get set }
     var likesGateway: LikesGatewayProtocol! { get set }
 }
 
 protocol ReposLikesUseCaseOutput {
-    // GitHubリポジトリ（＋お気に入りON/OFF）の情報が更新されたときに呼ばれる
+    // this func is called when likes switch changes in Github Repo
     func useCaseDidUpdateStatuses(_ repoStatuses: [GitHubRepoStatus])
-    // お気に入り一覧情報が更新されたときに呼ばれる
+    // this func is called when the list of likes status is updated
     func useCaseDidUpdateLikesList(_ likesList: [GitHubRepoStatus])
-    // Use Caseの関係する処理でエラーがあったときに呼ばれる
+    // this func is called when erorr occurs in Use Case
     func useCaseDidReceiveError(_ error: Error)
 }
 
 protocol ReposGatewayProtocol {
-    // キーワードで検索した結果を完了ハンドラで返す
+    // Return the result of search by keyword in completion handler
     func fetch(using keywords: [String],
                completion: @escaping (Result<[GitHubRepo]>) -> Void)
 
-    // IDで検索した結果を完了ハンドラで返す
+    // Return the result of search by ID  in completion handler
     func fetch(using ids: [GitHubRepo.ID],
                completion: @escaping (Result<[GitHubRepo]>) -> Void)
 }
 
 protocol LikesGatewayProtocol {
-    // IDで検索したお気に入りの結果を完了ハンドラで返す
+    // Return the likes of search by keyword in completion handler
     func fetch(ids: [GitHubRepo.ID],
                completion: @escaping (Result<[GitHubRepo.ID: Bool]>) -> Void)
-    // IDについてのお気に入り状態を保存する
+    // Restore liked status with IDfa
     func save(liked: Bool,
               for id: GitHubRepo.ID,
               completion: @escaping (Result<Bool>) -> Void)
-    // お気に入り情報の一覧を返す
+    // Return the list of all Likes in completion handler
     func allLikes(completion: @escaping (Result<[GitHubRepo.ID: Bool]>) -> Void)
 }
 
-// Use Caseの実装
+// Use Case implementation
 final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
 
     var output: ReposLikesUseCaseOutput!
@@ -57,7 +57,7 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
     private var statusList = GitHubRepoStatusList(repos: [], likes: [:])
     private var likesList = GitHubRepoStatusList(repos: [], likes: [:])
 
-    // キーワードでリポジトリを検索し、結果とお気に入り状態を組み合わせた結果をOutputに通知する
+    // Search with keyword in Repo and Return the result and likes status
     func startFetch(using keywords: [String]) {
 
         reposGateway.fetch(using: keywords) { [weak self] reposResult in
@@ -79,7 +79,7 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
                                 .useCaseDidReceiveError(
                                     FetchingError.failedToFetchLikes(e))
                         case .success(let likes):
-                            // 結果を保持
+                            // restore the result
                             let statusList = GitHubRepoStatusList(
                                 repos: repos, likes: likes
                             )
@@ -90,7 +90,7 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
             }
         }
     }
-
+    // Collect the Liked list in Git Repo
     func collectLikedRepos() {
         likesGateway.allLikes { [weak self] result in
             guard let self = self else { return }
@@ -110,7 +110,7 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
                             .useCaseDidReceiveError(
                                 FetchingError.failedToFetchLikes(e))
                     case .success(let repos):
-                        // 結果を保持
+                        // restore the result
                         let likesList = GitHubRepoStatusList(
                             repos: repos,
                             likes: allLikes,
