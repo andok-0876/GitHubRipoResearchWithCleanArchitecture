@@ -57,7 +57,7 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
     private var statusList = GitHubRepoStatusList(repos: [], likes: [:])
     private var likesList = GitHubRepoStatusList(repos: [], likes: [:])
 
-    // Search with keyword in Repo and Return the result and likes status
+    // Search with keyword in Repo and Return the result and likes status and send notification to Output
     func startFetch(using keywords: [String]) {
 
         reposGateway.fetch(using: keywords) { [weak self] reposResult in
@@ -126,7 +126,8 @@ final class ReposLikesUseCase: ReposLikesUseCaseProtocol {
     }
 
     func set(liked: Bool, for id: GitHubRepo.ID) {
-        // お気に入りの状態を保存し、更新の結果を伝える
+        // restore the Likes status and send noftification of wether the likes status is update or not to
+        //Gateway
         likesGateway.save(liked: liked, for: id)
         { [weak self] likesResult in
             guard let self = self else { return }
