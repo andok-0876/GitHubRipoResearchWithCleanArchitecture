@@ -6,7 +6,7 @@ class Application {
     static let shared = Application()
     private init() {}
     
-    // ユースケースを公開プロパティとして保持
+    // restore Use case as public property
     private(set) var useCase: ReposLikesUseCase!
     
     func configure(with window: UIWindow) {
@@ -25,7 +25,7 @@ class Application {
         let reposGateway = ReposGateway(useCase: useCase)
         let likesGateway = LikesGateway(useCase: useCase)
         
-        // Use Caseとのバインド
+        // bind with Use Case
         useCase.reposGateway = reposGateway
         useCase.likesGateway = likesGateway
         
@@ -33,13 +33,13 @@ class Application {
         let webClient = GitHubRepos()
         let likesDataStore = UserDefaultsDataStore(userDefaults: UserDefaults.standard)
         
-        // Interface Adaptersとのバインド
+        // binding with Interface Adapters
         reposGateway.webClient = webClient
         reposGateway.dataStore = likesDataStore
         likesGateway.dataStore = likesDataStore
         
-        // Presenterの作成・バインドは各ViewControllerを生成するクラスが実施
-        // (本プロジェクトではTabBarControllerのawakeFromNib())
+        // create Presenter and binding in each ViewController
+        // but in this this project, awakeFromNib() of TabBarController creates and bind it
     }
 }
 

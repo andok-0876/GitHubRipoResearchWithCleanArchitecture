@@ -11,7 +11,6 @@
 		3B211007225B3BD600BB3513 /* ReposGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B211006225B3BD600BB3513 /* ReposGateway.swift */; };
 		3B211009225B3C1300BB3513 /* LikesGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B211008225B3C1300BB3513 /* LikesGateway.swift */; };
 		3B9362AE2256E37700438E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362AD2256E37700438E99 /* AppDelegate.swift */; };
-		3B9362B02256E37700438E99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362AF2256E37700438E99 /* ViewController.swift */; };
 		3B9362B32256E37700438E99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9362B12256E37700438E99 /* Main.storyboard */; };
 		3B9362B62256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B9362B42256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld */; };
 		3B9362B82256E37800438E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9362B72256E37800438E99 /* Assets.xcassets */; };
@@ -31,7 +30,6 @@
 		3B211008225B3C1300BB3513 /* LikesGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesGateway.swift; sourceTree = "<group>"; };
 		3B9362AA2256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRipoResearchWithCleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9362AD2256E37700438E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B9362AF2256E37700438E99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B9362B22256E37700438E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B9362B52256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubRipoResearchWithCleanArchitecture.xcdatamodel; sourceTree = "<group>"; };
 		3B9362B72256E37800438E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,7 +88,7 @@
 				3B9362DB225702C200438E99 /* Entity */,
 				3B9362EA2257348600438E99 /* Usecases */,
 				3B211003225AE53900BB3513 /* InterfaceAdapter */,
-				3B9362AF2256E37700438E99 /* ViewController.swift */,
+				3BF6910B225C46DF00C79F6E /* Framework_Driver */,
 				3B9362B12256E37700438E99 /* Main.storyboard */,
 				3B9362B72256E37800438E99 /* Assets.xcassets */,
 				3B9362BC2256E37800438E99 /* Info.plist */,
@@ -135,6 +133,13 @@
 				3BF69109225C456000C79F6E /* Application.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		3BF6910B225C46DF00C79F6E /* Framework_Driver */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Framework_Driver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,7 +219,6 @@
 				3B211005225AE69600BB3513 /* ReposPresenter.swift in Sources */,
 				3B9362B62256E37700438E99 /* GitHubRipoResearchWithCleanArchitecture.xcdatamodeld in Sources */,
 				3B9362E2225702E400438E99 /* ArrayExtensions.swift in Sources */,
-				3B9362B02256E37700438E99 /* ViewController.swift in Sources */,
 				3B9362E0225702E400438E99 /* GitHubRepoStatusList.swift in Sources */,
 				3B9362EE225734E100438E99 /* ReposLikesUseCase.swift in Sources */,
 				3B9362E1225702E400438E99 /* GitHubRepo.swift in Sources */,
