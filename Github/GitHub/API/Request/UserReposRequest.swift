@@ -1,3 +1,12 @@
+//
+//  UserReposRequest.swift
+//  GitHub
+//
+//  Created by 鈴木大貴 on 2018/08/02.
+//  Copyright © 2018年 marty-suzuki. All rights reserved.
+//
+
+/// - seealso: https://developer.github.com/v3/repos/#list-user-repositories
 public struct UserReposRequest: Request {
     public typealias Response = [Repository]
 

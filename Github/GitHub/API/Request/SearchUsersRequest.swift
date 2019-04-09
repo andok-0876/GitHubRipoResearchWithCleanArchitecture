@@ -1,8 +1,17 @@
-public struct SearchRepositoriesRequest: Request {
-    public typealias Response = ItemsResponse<Repository>
+//
+//  SearchUsersRequest.swift
+//  GitHub
+//
+//  Created by 鈴木大貴 on 2018/08/02.
+//  Copyright © 2018年 marty-suzuki. All rights reserved.
+//
+
+/// - seealso: https://developer.github.com/v3/search/#search-users
+public struct SearchUsersRequest: Request {
+    public typealias Response = ItemsResponse<User>
 
     public let method: HttpMethod = .get
-    public let path = "/search/repositories"
+    public let path = "/search/users"
 
     public var queryParameters: [String : String]? {
         var params: [String: String] = ["q": query]
@@ -36,11 +45,11 @@ public struct SearchRepositoriesRequest: Request {
     }
 }
 
-extension SearchRepositoriesRequest {
+extension SearchUsersRequest {
     public enum Sort: String {
-        case stars
-        case forks
-        case updated
+        case followers
+        case repositories
+        case joined
     }
 
     public enum Order: String {

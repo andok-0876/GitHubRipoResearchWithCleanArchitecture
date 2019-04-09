@@ -1,3 +1,11 @@
+//
+//  ItemsResponse.swift
+//  GitHub
+//
+//  Created by 鈴木大貴 on 2018/08/02.
+//  Copyright © 2018年 marty-suzuki. All rights reserved.
+//
+
 import Foundation
 
 public struct ItemsResponse<Item: Decodable>: Decodable {

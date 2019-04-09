@@ -1,7 +1,15 @@
+//
+//  Session.swift
+//  GitHub
+//
+//  Created by 鈴木大貴 on 2018/08/02.
+//  Copyright © 2018年 marty-suzuki. All rights reserved.
+//
+
 import Foundation
 
 public enum SessionError: Error {
-    
+
     case noData(HTTPURLResponse)
     case noResponse
     case unacceptableStatusCode(Int, Message?)
@@ -10,11 +18,11 @@ public enum SessionError: Error {
 }
 
 public final class Session {
-    
+
     private let accessToken: () -> AccessToken?
     private let additionalHeaderFields: () -> [String: String]?
     private let session: URLSession
-    
+
     public init(accessToken: @escaping () -> AccessToken? = { nil },
                 additionalHeaderFields: @escaping () -> [String: String]? = { nil },
                 session: URLSession = .shared) {
@@ -22,25 +30,25 @@ public final class Session {
         self.additionalHeaderFields = additionalHeaderFields
         self.session = session
     }
-    
+
     @discardableResult
-    func send<T: Request>(_ request: T,
+    public func send<T: Request>(_ request: T,
                                  completion: @escaping (Result<(T.Response, Pagination)>) -> ()) -> URLSessionTask? {
         let url = request.baseURL.appendingPathComponent(request.path)
-        
+
         guard var componets = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             completion(.failure(SessionError.failedToCreateComponents(url)))
             return nil
         }
         componets.queryItems = request.queryParameters?.compactMap(URLQueryItem.init)
-        
+
         guard var urlRequest = componets.url.map({ URLRequest(url: $0) }) else {
             completion(.failure(SessionError.failedToCreateURL(componets)))
             return nil
         }
-        
+
         urlRequest.httpMethod = request.method.rawValue
-        
+
         let headerFields: [String: String]
         if let additionalHeaderFields = additionalHeaderFields() {
             headerFields = request.headerFields.merging(additionalHeaderFields, uniquingKeysWith: +)
@@ -53,36 +61,36 @@ public final class Session {
         } else {
             urlRequest.allHTTPHeaderFields = headerFields
         }
-        
+
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse else {
                 completion(.failure(SessionError.noResponse))
                 return
             }
-            
+
             guard let data = data else {
                 completion(.failure(SessionError.noData(response)))
                 return
             }
-            
+
             guard  200..<300 ~= response.statusCode else {
                 let message = try? JSONDecoder().decode(SessionError.Message.self, from: data)
                 completion(.failure(SessionError.unacceptableStatusCode(response.statusCode, message)))
                 return
             }
-            
+
             let pagination: Pagination
             if let link = response.allHeaderFields["Link"] as? String {
                 pagination = Pagination(link: link)
             } else {
                 pagination = Pagination(next: nil, last: nil, first: nil, prev: nil)
             }
-            
+
             do {
                 let object = try JSONDecoder().decode(T.Response.self, from: data)
                 completion(.success((object, pagination)))
@@ -90,9 +98,9 @@ public final class Session {
                 completion(.failure(error))
             }
         }
-        
+
         task.resume()
-        
+
         return task
     }
 }
@@ -101,7 +109,7 @@ extension SessionError {
     public struct Message: Decodable {
         public let documentationURL: URL
         public let message: String
-        
+
         private enum CodingKeys: String, CodingKey {
             case documentationURL = "documentation_url"
             case message

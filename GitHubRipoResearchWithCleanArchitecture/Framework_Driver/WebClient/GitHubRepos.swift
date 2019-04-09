@@ -1,10 +1,11 @@
 import Foundation
+import GitHub
 
 class GitHubRepos: WebClientProtocol {
     
     func fetch(using keywords: [String], completion: @escaping (Result<[GitHubRepo]>) -> Void) {
         let query = keywords.joined(separator: " ")
-        let session = Session()
+        let session = GitHub.Session()
         let request = SearchRepositoriesRequest(query: query,
                                                 sort: nil,
                                                 order: nil,
