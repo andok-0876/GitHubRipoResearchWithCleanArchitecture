@@ -1,11 +1,3 @@
-//
-//  GitHubRepos.swift
-//  GitHubRipoResearchWithCleanArchitecture
-//
-//  Created by 安藤 on 2019/04/09.
-//  Copyright © 2019 kazando. All rights reserved.
-//
-
 import Foundation
 
 class GitHubRepos: WebClientProtocol {
